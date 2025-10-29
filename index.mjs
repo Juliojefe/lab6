@@ -24,12 +24,21 @@ app.get('/', (req, res) => {
    res.render("home.ejs");
 });
 
+//  get all info for a specific author
+app.get('/api/authors/:authorId', async(req, res) => {
+  let authorId = req.params.authorId;
+  let sql = "SELECT * FROM authors WHERE authorId = ?"
+  const [rows] = await pool.query(sql, [authorId]);
+  res.send(rows);
+});
+
 app.get('/searchByKeyword', async(req, res) => {
   let keyword = req.query.keyword;
-  let sql = "SELECT firstName, lastName, quote FROM authors WHERE quotes LIKE ?";
+  let sql = "SELECT firstName, lastName, quote, authorId FROM authors NATURAL JOIN quotes WHERE quote LIKE ?";
   let sqlParams = [`%${keyword}%`];
   const [rows] = await pool.query(sql, sqlParams);
-  res.render("results.ejs");
+  console.log(rows);
+  res.render("results.ejs", {rows});
 });
 
 app.get("/dbTest", async(req, res) => {
