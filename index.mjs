@@ -22,14 +22,27 @@ const pool = mysql.createPool({
 app.get('/', async (req, res) => {
   let authorsSql = "SELECT authorId, firstName, lastName FROM authors ORDER BY lastName";
   const [authorRows] = await pool.query(authorsSql);
-  res.render("home.ejs", {authorRows});
+  let categoriesSql = "SELECT DISTINCT category FROM quotes;";
+  const [categoriesRows] = await pool.query(categoriesSql);
+  res.render("home.ejs", {authorRows, categoriesRows});
 });
 
 app.get('/searchByAuthor', async (req, res) => {
   let authorId = req.query.authorId; 
-  let sql = "SELECT quote, q.authorId FROM quotes q JOIN authors a ON q.authorid = ?;"
+  let sql = "SELECT firstName, lastName, quote, q.authorId FROM quotes q JOIN authors a ON q.authorId = a.authorId WHERE q.authorId = ?;"
   const [rows] = await pool.query(sql, [authorId]);
   res.render("results.ejs", {rows});
+});
+
+app.get('/searchByCategory', async (req, res) => {
+  let cat = req.query.category; 
+  const sqlCat = `
+    SELECT a.firstName, a.lastName, q.quote, q.authorId
+    FROM quotes q
+    JOIN authors a ON q.authorId = a.authorId
+    WHERE q.category = ?`;  
+  const [rowsCat] = await pool.query(sqlCat, [cat]);
+  res.render("results.ejs", {rows : rowsCat});
 });
 
 //  get all info for a specific author

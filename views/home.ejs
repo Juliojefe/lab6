@@ -24,6 +24,17 @@
     </select>
     <button class="btn btn-outline-success">Search</button>
   </form>
+  <form action="/searchByCategory" method="GET">
+    <label>Search by category</label>
+    <select name="category">
+      <% for (let catRow of categoriesRows) { %>
+        <option value="<%= catRow.category %>">
+          <%= catRow.category %>
+        </option>
+      <% } %>
+    </select>
+    <button class="btn btn-outline-success">Search</button>
+  </form>
   <%- include("partials/footer.ejs") %>
 </body>
 </html>
