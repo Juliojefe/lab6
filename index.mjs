@@ -19,9 +19,17 @@ const pool = mysql.createPool({
     waitForConnections: true
 });
 
-//routes
-app.get('/', (req, res) => {
-   res.render("home.ejs");
+app.get('/', async (req, res) => {
+  let authorsSql = "SELECT authorId, firstName, lastName FROM authors ORDER BY lastName";
+  const [authorRows] = await pool.query(authorsSql);
+  res.render("home.ejs", {authorRows});
+});
+
+app.get('/searchByAuthor', async (req, res) => {
+  let authorId = req.query.authorId; 
+  let sql = "SELECT quote, q.authorId FROM quotes q JOIN authors a ON q.authorid = ?;"
+  const [rows] = await pool.query(sql, [authorId]);
+  res.render("results.ejs", {rows});
 });
 
 //  get all info for a specific author
