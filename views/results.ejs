@@ -1,42 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>results</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
 </head>
+
 <body>
   <%- include("partials/header.ejs") %>
-  <% for (let row of rows) { %>
-    <h2><%= row.quote %></h2>
-    <a class="authors" href="#" authorId=( <%= row.authorId %> )"><%= row.authorId + ' ' + row.firstName + ' ' + row.lastName %></a>
-    <br>
-  <% } %>
+    <% for (let row of rows) { %>
+      <h2>
+        <%= row.quote %>
+      </h2>
+      <a class="authors" href="#" authorId=( <%=row.authorId %> )"><%= row.authorId + ' ' + row.firstName + ' ' +
+          row.lastName %></a>
+      <br>
+      <% } %>
+        <dialog id="authorModal">
+          <div id="authorInfo">
+            <h2 id="authorName"></h2>
+            <img id="outterImage">
+            <button id="closeModal">Close</button>
+          </div>
+        </dialog>
 
-  <div id="authorInfor">
-    <h2 id="authorName"></h2>
-    <img id="outterImage">
-  </div>
-  <script>
+        <script>
+          $("#closeModal").addEventListener("click", () => { $("#authorModal").close() })
+          let authorLinks = document.querySelectorAll(".authors");
+          for (let i of authorLinks) {
+            i.addEventListener("click", getAuthorInfo);
+          }
 
-    function $(selector) {
-      return document.querySelector(selector);
-    }
+          function $(selector) {
+            return document.querySelector(selector);
+          }
 
-    $(".authors").addEventListener(click, getAuthorInfo);
+          $(".authors").addEventListener(click, getAuthorInfo);
 
-    async function getAuthorInfo(authorId) {
-      let authorId = this.getAttribute("authorId");
-      let url = "api/authors/" + authorId;
-      let response = await fetch(url);
-      let data = response.json();
-      // console.log(data);
-      $("authorName").textContent = data[0].firstName + " " + data[0].lastName;
-      $("outterImage").src = data[0].portrate;
-    }
-  </script>
-  <%- include("partials/footer.ejs") %>
+          async function getAuthorInfo(authorId) {
+            let authorId = this.getAttribute("authorId");
+            let url = "api/authors/" + authorId;
+            let response = await fetch(url);
+            let data = response.json();
+            // console.log(data);
+            $("#authorName").textContent = data[0].firstName + " " + data[0].lastName;
+            $("#outterImage").src = data[0].portrate;
+            $("#authorModal").showModal();
+          }
+        </script>
+        <%- include("partials/footer.ejs") %>
 </body>
+
 </html>
