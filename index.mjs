@@ -20,11 +20,21 @@ const pool = mysql.createPool({
 });
 
 app.get('/', async (req, res) => {
+  //  search by author
   let authorsSql = "SELECT authorId, firstName, lastName FROM authors ORDER BY lastName";
   const [authorRows] = await pool.query(authorsSql);
+  //  search by category
   let categoriesSql = "SELECT DISTINCT category FROM quotes;";
   const [categoriesRows] = await pool.query(categoriesSql);
   res.render("home.ejs", { authorRows, categoriesRows });
+});
+
+app.get('/searchByLikeRange', async (req, res) => {
+  let min = req.query.min;
+  let max = req.query.max;
+  let sql = "SELECT firstName, lastName, quote, q.authorId FROM quotes q JOIN authors a ON q.authorId = a.authorId WHERE q.likes BETWEEN ? AND ?"
+  const [rows] = await pool.query(sql, [min, max]);
+  res.render("results.ejs", { rows });
 });
 
 app.get('/searchByAuthor', async (req, res) => {

@@ -19,4 +19,4 @@ async function getAuthorInfo(authorId) {
   $("#authorName").textContent = data[0].firstName + " " + data[0].lastName;
   $("#outterImage").src = data[0].portrate;
   $("#authorModal").showModal();
-}s
+}

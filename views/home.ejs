@@ -47,6 +47,14 @@
       <button class="btn btn-outline-success">Search</button>
     </form>
 
+    <!-- Search by like range -->
+    <form action="/searchByLikeRange" method="GET">
+      <label>Search by likes</label>
+        <label>Minimum: <input type="number" name="min"></label>
+        <label>Maximum: <input type="number" name="max"></label>
+      <button class="btn btn-outline-success">Search</button>
+    </form>
+
     <%- include("partials/footer.ejs") %>
 
     <script src="js/home.js"></script>
