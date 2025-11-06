@@ -58,7 +58,6 @@ app.get('/searchByKeyword', async (req, res) => {
   let sql = "SELECT firstName, lastName, quote, authorId FROM authors NATURAL JOIN quotes WHERE quote LIKE ?";
   let sqlParams = [`%${keyword}%`];
   const [rows] = await pool.query(sql, sqlParams);
-  console.log(rows);
   res.render("results.ejs", { rows });
 });
 
