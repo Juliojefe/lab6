@@ -1,54 +1,65 @@
-/* body {
-  align-items: center;   
-  justify-content: center;  
-  height: 100vh;            
-  margin: 0;                
-}
-
-#partitionSectionDiv {
-  align-items: center;
-  justify-content: center; 
-  width: 600px;
-  height: 200px;
-  border: 1px solid black;
-  margin: 30px;
-  padding: 20px;
-} */
-
 body {
-  display: flex;
-  flex-direction: column;  /* stack boxes vertically */
-  align-items: center;     /* center horizontally */
-  justify-content: center; /* center vertically */
-  height: 100vh;           /* fill the viewport */
+  height: 100vh;
   margin: 0;
-  gap: 20px;               /* space between boxes */
+  background-color: rgb(226, 226, 226);
+}
+
+#authorModal {
+  width: 50%;
+  height: 100%;
+}
+
+#authorModal img{
+  width: 70%;
+}
+
+#centerDiv {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #partitionSectionDiv {
   display: flex;
-  flex-direction: column;  /* stack contents vertically */
-  align-items: center;     /* center horizontally */
-  justify-content: center; /* center vertically */
-  width: 300px;
-  height: 200px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 300px;
   border: 1px solid black;
   padding: 10px;
   box-sizing: border-box;
+  background-color: #316CF4;
+  color: white;
 }
 
 #partitionSectionDiv form {
   display: flex;
-  flex-direction: column;  /* vertical stacking inside form */
-  align-items: center;     /* center inputs/buttons horizontally */
-  gap: 10px;               /* spacing between elements */
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+#partitionSectionDiv label {
+  font-size: 33px;
 }
 
 input, select, button {
-  padding: 5px;
+  padding: 10px;
   font-size: 14px;
 }
 
+#partitionSectionDiv button {
+  background-color: white;
+  color: #316CF4;
+}
+
+#partitionSectionDiv button:hover {
+  background-color: black;
+  color: #316CF4;
+}
 
 #footer {
   display: flex;

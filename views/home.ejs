@@ -16,54 +16,56 @@
 <body class="text-center">
   <%- include("partials/header.ejs") %>
 
-    <!-- Search by keyword -->
-    <div id="partitionSectionDiv">
-      <form id="searchByKeyWordForm" method="GET">
-        <label>Keyword: <input type="text" name="keyword"></label>
-        <button class="btn btn-outline-success">Search</button>
-      </form>
-    </div>
+    <div id="centerDiv">
+      <!-- Search by keyword -->
+      <div id="partitionSectionDiv">
+        <form id="searchByKeyWordForm" method="GET">
+          <label>Search by keyword <input type="text" name="keyword"></label>
+          <button>Search</button>
+        </form>
+      </div>
 
-    <!-- Search by author -->
-    <div id="partitionSectionDiv">
-      <form action="/searchByAuthor" method="GET">
-        <label>Search by author</label>
-        <select name="authorId">
-          <% for (let authorRow of authorRows) { %>
-            <option value="<%= authorRow.authorId %>">
-              <%= authorRow.firstName + " " + authorRow.lastName %>
-            </option>
-            <% } %>
-        </select>
-        <button class="btn btn-outline-success">Search</button>
-      </form>
-    </div>
+      <!-- Search by author -->
+      <div id="partitionSectionDiv">
+        <form action="/searchByAuthor" method="GET">
+          <label>Search by author</label>
+          <select name="authorId">
+            <% for (let authorRow of authorRows) { %>
+              <option value="<%= authorRow.authorId %>">
+                <%= authorRow.firstName + " " + authorRow.lastName %>
+              </option>
+              <% } %>
+          </select>
+          <button>Search</button>
+        </form>
+      </div>
 
-    <!-- Search by category -->
-    <div id="partitionSectionDiv">
-      <form action="/searchByCategory" method="GET">
-        <label>Search by category</label>
-        <select name="category">
-          <% for (let catRow of categoriesRows) { %>
-            <option value="<%= catRow.category %>">
-              <%= catRow.category %>
-            </option>
-            <% } %>
-        </select>
-        <button class="btn btn-outline-success">Search</button>
-      </form>
-    </div>
+      <!-- Search by category -->
+      <div id="partitionSectionDiv">
+        <form action="/searchByCategory" method="GET">
+          <label>Search by category</label>
+          <select name="category">
+            <% for (let catRow of categoriesRows) { %>
+              <option value="<%= catRow.category %>">
+                <%= catRow.category %>
+              </option>
+              <% } %>
+          </select>
+          <button>Search</button>
+        </form>
+      </div>
 
-    <!-- Search by like range -->
-    <div id="partitionSectionDiv">
-      <form action="/searchByLikeRange" method="GET">
-        <label>Search by likes</label>
-        <div id="flex">
-          <label>Minimum: <input type="number" name="min"></label>
-          <label>Maximum: <input type="number" name="max"></label>
-        </div>
-        <button class="btn btn-outline-success">Search</button>
-      </form>
+      <!-- Search by like range -->
+      <div id="partitionSectionDiv">
+        <form action="/searchByLikeRange" method="GET">
+          <label>Search by likes</label>
+          <div id="flex">
+            <label>Minimum: <input type="number" name="min"></label>
+            <label>Maximum: <input type="number" name="max"></label>
+          </div>
+          <button>Search</button>
+        </form>
+      </div>
     </div>
 
     <%- include("partials/footer.ejs") %>
