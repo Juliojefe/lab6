@@ -14,7 +14,7 @@
 
 <body class="text-center">
   <%- include("partials/header.ejs") %>
-    <form action="/searchByKeyword" method="GET">
+    <form id="/searchByKeyWordForm" method="GET">
       <label>Keyword: <input type="text" name="keyword"></label>
       <button class="btn btn-outline-success">Search</button>
     </form>
@@ -41,6 +41,8 @@
       <button class="btn btn-outline-success">Search</button>
     </form>
     <%- include("partials/footer.ejs") %>
+
+    <script src="js/home.js"></script>
 </body>
 
 </html>
