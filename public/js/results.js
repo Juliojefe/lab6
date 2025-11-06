@@ -9,13 +9,15 @@ function $(selector) {
   return document.querySelector(selector);
 }
 
-async function getAuthorInfo(authorId) {
+async function getAuthorInfo() {
+  event.preventDefault();
   let authorId = this.getAttribute("authorId");
   let url = "api/authors/" + authorId;
   let response = await fetch(url);
   let data = await response.json();
   // console.log(data);
   $("#authorName").textContent = data[0].firstName + " " + data[0].lastName;
-  $("#outterImage").src = data[0].portrate;
+  $("#outterImage").src = data[0].portrait;
   $("#authorModal").showModal();
+  $("#authorBio").textContent = data[0].biography;
 }

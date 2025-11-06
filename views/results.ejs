@@ -18,14 +18,15 @@
       <h2>
         <%= row.quote %>
       </h2>
-      <a class="authors" href="#" authorId=( <%=row.authorId %> )"><%= row.authorId + ' ' + row.firstName + ' ' +
-          row.lastName %></a>
+      <a class="authors" href="#" authorId="<%= row.authorId %>">
+        <%= row.authorId + ' ' + row.firstName + ' ' + row.lastName %></a>
       <br>
       <% } %>
         <dialog id="authorModal">
           <div id="authorInfo">
             <h2 id="authorName"></h2>
             <img id="outterImage">
+            <p id="authorBio"></p>
             <button id="closeModal">Close</button>
           </div>
         </dialog>
