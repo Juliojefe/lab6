@@ -1,0 +1,66 @@
+/* body {
+  align-items: center;   
+  justify-content: center;  
+  height: 100vh;            
+  margin: 0;                
+}
+
+#partitionSectionDiv {
+  align-items: center;
+  justify-content: center; 
+  width: 600px;
+  height: 200px;
+  border: 1px solid black;
+  margin: 30px;
+  padding: 20px;
+} */
+
+body {
+  display: flex;
+  flex-direction: column;  /* stack boxes vertically */
+  align-items: center;     /* center horizontally */
+  justify-content: center; /* center vertically */
+  height: 100vh;           /* fill the viewport */
+  margin: 0;
+  gap: 20px;               /* space between boxes */
+}
+
+#partitionSectionDiv {
+  display: flex;
+  flex-direction: column;  /* stack contents vertically */
+  align-items: center;     /* center horizontally */
+  justify-content: center; /* center vertically */
+  width: 300px;
+  height: 200px;
+  border: 1px solid black;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#partitionSectionDiv form {
+  display: flex;
+  flex-direction: column;  /* vertical stacking inside form */
+  align-items: center;     /* center inputs/buttons horizontally */
+  gap: 10px;               /* spacing between elements */
+}
+
+input, select, button {
+  padding: 5px;
+  font-size: 14px;
+}
+
+
+#footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #316CF4;
+  color: white;
+  margin-top: 20px;
+  padding: 20px;
+  font-size: x-large;
+}
+
+#flex {
+  display: flex;
+}
