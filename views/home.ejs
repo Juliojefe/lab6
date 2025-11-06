@@ -14,10 +14,14 @@
 
 <body class="text-center">
   <%- include("partials/header.ejs") %>
-    <form id="/searchByKeyWordForm" method="GET">
+
+    <!-- Search by keyword -->
+    <form action="/searchByKeyword" id="/searchByKeyWordForm" method="GET">
       <label>Keyword: <input type="text" name="keyword"></label>
       <button class="btn btn-outline-success">Search</button>
     </form>
+
+    <!-- Search by author -->
     <form action="/searchByAuthor" method="GET">
       <label>Search by author</label>
       <select name="authorId">
@@ -29,6 +33,8 @@
       </select>
       <button class="btn btn-outline-success">Search</button>
     </form>
+
+    <!-- Search by category -->
     <form action="/searchByCategory" method="GET">
       <label>Search by category</label>
       <select name="category">
@@ -40,6 +46,7 @@
       </select>
       <button class="btn btn-outline-success">Search</button>
     </form>
+
     <%- include("partials/footer.ejs") %>
 
     <script src="js/home.js"></script>
