@@ -7,8 +7,10 @@ async function validateForm(event) {
     let p = document.createElement("p");
     p.textContent = "Error please enter a keyword longer than 3 letters";
     p.style.color = "red";
-    document.body.appendChild(p);
+    // document.body.appendChild(p);
+    let div = document.querySelector("#helperDiv");
+    div.appendChild(p);
   } else {
-    window.location.href = `/searchByKeyword?keyword=${encodeURIComponent(keyword)}`;
+  window.location.href = `/searchByKeyword?keyword=${encodeURIComponent(keyword)}`;
   }
 }

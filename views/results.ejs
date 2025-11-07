@@ -15,27 +15,43 @@
 
 <body>
   <%- include("partials/header.ejs") %>
-  <div id="centerDiv">
-    <% for (let row of rows) { %>
-      <h2>
-        <%= row.quote %>
-      </h2>
-      <a class="authors" href="#" authorId="<%= row.authorId %>">
-        <%= row.authorId + ' ' + row.firstName + ' ' + row.lastName %></a>
-      <br>
-      <% } %>
-        <dialog id="authorModal">
-          <div id="authorInfo">
-            <h2 id="authorName"></h2>
-            <img id="outterImage">
-            <p id="authorBio"></p>
-            <button id="closeModal">Close</button>
-          </div>
-        </dialog>
+    <div id="centerDiv">
+      <% for (let row of rows) { %>
+        <div id="partitionSectionDiv">
+          <h2>
+            <%= row.quote %>
+          </h2>
+          <a class="authors" href="#" authorId="<%= row.authorId %>">
+            <%= row.authorId + ' ' + row.firstName + ' ' + row.lastName %>
+          </a>
+        </div>
+        <% } %>
 
-        <script src="js/results.js"></script>
-      </div>
-        <%- include("partials/footer.ejs") %>
+        <!-- normal modal -->
+          <!-- <dialog id="authorModal">
+            <div id="authorInfo">
+              <h2 id="authorName"></h2>
+              <img id="outterImage">
+              <p id="authorBio"></p>
+              <button id="closeModal">Close</button>
+            </div>
+          </dialog> -->
+          
+          <!-- bootstrap modal -->
+          <dialog id="authorModal" class="border-0 rounded-4 shadow-lg p-0" style="max-width: 500px; width: 90%;">
+            <div id="authorInfo" class="card text-center border-0">
+              <div class="card-body">
+                <h2 id="authorName" class="card-title mb-2"></h2>
+                <img id="outterImage" class="img-fluid rounded-circle mb-3 shadow-sm" alt="Author portrait">
+                <p id="authorBio" class="card-text text-muted"></p>
+                <button id="closeModal" class="btn btn-secondary mt-3">Close</button>
+              </div>
+            </div>
+          </dialog>
+
+          <script src="js/results.js"></script>
+    </div>
+    <%- include("partials/footer.ejs") %>
 </body>
 
 </html>
